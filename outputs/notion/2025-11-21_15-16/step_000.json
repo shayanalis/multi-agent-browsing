@@ -1,0 +1,13 @@
+{
+  "step_index": 0,
+  "screenshot_path": "step_000.png",
+  "url": "https://www.notion.so/",
+  "has_unique_url": true,
+  "action_from_previous": {
+    "type": "other",
+    "description": "Executed action",
+    "element_index": null
+  },
+  "state_description": "Initial state after navigation: How can i search for a page on notion.so?",
+  "timestamp": "2025-11-21T15:16:15.335047"
+}

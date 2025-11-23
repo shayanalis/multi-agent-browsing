@@ -1,0 +1,10 @@
+{
+  "task_id": "notion_2025-11-21_15-30",
+  "app": "notion",
+  "task_instruction": "Go to notion.so, then search and open the page on socks",
+  "status": "failure",
+  "start_time": "2025-11-21T15:30:12.352741",
+  "end_time": "2025-11-21T15:30:23.296729",
+  "total_steps": 2,
+  "session_profile_path": "/private/var/folders/qt/y72p2p155j3496mq27xhyljw0000gn/T/arc-automation-kjrujy1r"
+}

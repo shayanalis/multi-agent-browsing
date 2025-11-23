@@ -1,0 +1,10 @@
+{
+  "task_id": "notion_2025-11-21_15-17",
+  "app": "notion",
+  "task_instruction": "Go to notion.so and serach for my todo list",
+  "status": "success",
+  "start_time": "2025-11-21T15:17:12.026061",
+  "end_time": "2025-11-21T15:17:31.917354",
+  "total_steps": 6,
+  "session_profile_path": "/private/var/folders/qt/y72p2p155j3496mq27xhyljw0000gn/T/arc-automation-g3z_y32g"
+}

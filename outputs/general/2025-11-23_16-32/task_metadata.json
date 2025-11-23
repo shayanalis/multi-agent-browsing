@@ -1,0 +1,10 @@
+{
+  "task_id": "general_2025-11-23_16-32",
+  "app": "general",
+  "task_instruction": "teach me how to create a new database in notion",
+  "status": "failure",
+  "start_time": "2025-11-23T16:32:36.618496",
+  "end_time": "2025-11-23T16:32:43.317608",
+  "total_steps": 1,
+  "session_profile_path": "/private/var/folders/qt/y72p2p155j3496mq27xhyljw0000gn/T/arc-automation-jzv2w39i"
+}
