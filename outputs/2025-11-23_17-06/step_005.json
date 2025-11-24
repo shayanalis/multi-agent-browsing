@@ -10,6 +10,6 @@
   },
   "state_description": "After click: Click on 'Add property'",
   "timestamp": "2025-11-23T17:07:01.980790",
-  "llm_enhanced_instruction": null,
-  "llm_context": null
+  "llm_enhanced_instruction": "Click on the 'Add property' button located at the top of the database interface to include new fields in your database, which will allow you to customize the information you want to track.",
+  "llm_context": "You should see a dropdown menu appear, allowing you to select different property types for your database, bringing you closer to fully setting up your database."
 }

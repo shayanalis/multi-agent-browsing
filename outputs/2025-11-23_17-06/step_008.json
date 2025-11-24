@@ -10,6 +10,6 @@
   },
   "state_description": "After click: Click on 'Number'",
   "timestamp": "2025-11-23T17:07:10.015001",
-  "llm_enhanced_instruction": null,
-  "llm_context": null
+  "llm_enhanced_instruction": "Click on the 'Number' option in the property type menu to add a numerical property to your database, which will allow you to track numerical values within your entries.",
+  "llm_context": "You should see the property type change to 'Number', indicating that you can now input numerical data into this column of your database."
 }

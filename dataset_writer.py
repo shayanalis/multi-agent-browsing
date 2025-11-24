@@ -96,17 +96,51 @@ class DatasetWriter:
         previous_url = None
         previous_step = None
         
-        # Add each step as an instruction
-        for step in sorted(steps, key=lambda s: s.step_index):
+        # Sort steps by step_index to ensure correct order
+        sorted_steps = sorted(steps, key=lambda s: s.step_index)
+        
+        # Filter out steps to skip (e.g., initial state, duplicate actions)
+        steps_to_include = []
+        last_instruction = None
+        last_url = None
+        prev_url = None
+        
+        for step in sorted_steps:
             step_num = step.step_index + 1
-            
             # Skip the first step if it's just "initial state"
             if step_num == 1 and "initial state" in step.state_description.lower():
+                prev_url = step.url
                 previous_url = step.url
                 previous_step = step
                 continue
             
-            lines.append(f"### Step {step_num}")
+            # Get instruction for this step
+            instruction = None
+            if step.llm_enhanced_instruction:
+                instruction = step.llm_enhanced_instruction
+            elif step.action_from_previous and step.action_from_previous.description:
+                instruction = step.action_from_previous.description
+            
+            # Skip duplicate consecutive steps (same instruction and URL)
+            if instruction and instruction == last_instruction and step.url == last_url:
+                prev_url = step.url
+                continue
+            
+            # Skip steps with no meaningful action
+            if not instruction or instruction.lower() in ["execute action", "executed action", "interact with the page"]:
+                # Only skip if URL hasn't changed (no navigation happened)
+                if step.url == prev_url:
+                    prev_url = step.url
+                    continue
+            
+            steps_to_include.append(step)
+            last_instruction = instruction
+            last_url = step.url
+            prev_url = step.url
+        
+        # Add each step as an instruction with sequential numbering
+        for display_num, step in enumerate(steps_to_include, start=1):
+            lines.append(f"### Step {display_num}")
             lines.append("")
             
             # Generate instruction based on available information
@@ -124,6 +158,10 @@ class DatasetWriter:
                 # Clean up "After other:" prefixes
                 if instruction and "after other:" in instruction.lower():
                     instruction = None
+                # Clean up emoji prefixes (e.g., "🔗 Navigated to...")
+                if instruction:
+                    import re
+                    instruction = re.sub(r'^[^\w\s]+', '', instruction).strip()
             
             # If no good action description, infer from context
             if not instruction or instruction.lower() in ["execute action", "executed action"]:
@@ -196,7 +234,7 @@ class DatasetWriter:
             
             # Add screenshot
             screenshot_rel = step.screenshot_path
-            lines.append(f"![Step {step_num}]({screenshot_rel})")
+            lines.append(f"![Step {display_num}]({screenshot_rel})")
             lines.append("")
             
             # Add context - prefer LLM context if available, otherwise use URL-based context
@@ -236,6 +274,14 @@ class DatasetWriter:
             # Update for next iteration
             previous_url = step.url
             previous_step = step
+
+        # Update total steps count to reflect actual included steps
+        if lines:
+            # Find and update the "Total Steps" line
+            for i, line in enumerate(lines):
+                if line.startswith("**Total Steps:**"):
+                    lines[i] = f"**Total Steps:** {len(steps_to_include)}"
+                    break
 
         # Write tutorial
         with open(tutorial_path, "w") as f:

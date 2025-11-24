@@ -10,6 +10,6 @@
   },
   "state_description": "After click: Clicked div role=button aria-label=New page",
   "timestamp": "2025-11-23T17:06:53.704057",
-  "llm_enhanced_instruction": null,
-  "llm_context": null
+  "llm_enhanced_instruction": "Click on the button labeled 'New page' located at the top right of the Notion interface to initiate the creation of a new database.",
+  "llm_context": "You should see a blank database page with column headers, indicating that you're now one step closer to creating your database."
 }

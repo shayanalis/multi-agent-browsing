@@ -61,46 +61,60 @@ class BrowserAgentWrapper:
         if self.agent is not None:
             return
 
-        # Convert the question/task into detailed high-level instructions
-        print("Converting task into detailed instructions...")
+        # Convert the question/task into concise, high-level instructions
+        print("Converting task into concise instructions...")
         response = self.openai_model.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-5",
             messages=[
                 {
                     "role": "system",
-                    "content": """You are a task instruction converter. Your job is to convert user questions or requests into clear, step-by-step instructions that a browser automation agent can follow.
+                    "content": """You are a task instruction converter. Your job is to convert user questions or requests into CONCISE, high-level instructions that a browser automation agent can follow efficiently.
 
-Convert questions like "how can I create a notion database?" into detailed instructions like:
-"Navigate to notion.so, create a new database, configure the database structure, and save it."
+CRITICAL: Keep instructions SIMPLE and MINIMAL. The agent should take FEWER steps, not more.
+
+Convert questions like "how can I create a notion database?" into simple instructions like:
+"Go to notion.so, click New page, select Database, choose Empty database."
 
 The instructions should be:
-- High-level and clear
+- VERY concise (3-5 steps maximum for most tasks)
+- High-level (don't specify every click)
 - Actionable for a browser automation agent
-- Suitable for creating a tutorial
 - Include specific websites/URLs when relevant
-- Be concise but complete
+- Focus on the MINIMUM steps needed to complete the task
 
-Return only the converted instructions, no additional explanation."""
+When converting a user request:
+- Express the **core task** in the FEWEST possible steps
+- Include **relevant URLs** (e.g., "Go to https://www.notion.so")
+- Use **semantic actions** that combine multiple clicks:
+  - *Create a new database* (not "click New, click Database, click Empty")
+  - *Fill in the form* (not "type in field 1, type in field 2")
+- Group related actions together
+- Skip intermediate steps that are obvious
+- Return **only the converted instructions** (no explanations)
+"""
                 },
                 {
                     "role": "user",
-                    "content": f"Convert this task into detailed instructions: {self.task_instruction}"
+                    "content": f"Convert this task into concise, minimal instructions (3-5 steps max): {self.task_instruction}"
                 },
             ],
-            temperature=0.3,
         )
         
         # Extract the converted instruction
         converted_instruction = response.choices[0].message.content.strip()
         print(f"Converted instruction: {converted_instruction}")
         
+        # Add efficiency directive to the instruction
+        efficiency_directive = "\n\nIMPORTANT: Complete this task in the MINIMUM number of steps. Be direct and efficient - combine related actions and skip unnecessary intermediate steps."
+        final_instruction = converted_instruction + efficiency_directive
+        
         # Store the original and converted instructions
         self.original_task_instruction = self.task_instruction
-        self.converted_task_instruction = converted_instruction
+        self.converted_task_instruction = final_instruction
 
         # Use the converted instruction for the agent
         self.agent = Agent(
-            task=converted_instruction,
+            task=final_instruction,
             llm=self.llm,
             browser_profile=self.browser_profile,
         )

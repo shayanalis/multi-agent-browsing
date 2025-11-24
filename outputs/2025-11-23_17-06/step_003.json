@@ -10,6 +10,6 @@
   },
   "state_description": "After click: Click on 'Database'",
   "timestamp": "2025-11-23T17:06:56.450074",
-  "llm_enhanced_instruction": null,
-  "llm_context": null
+  "llm_enhanced_instruction": "Click on the 'Database' option in the menu that appears after creating a new page to initiate the process of setting up your database.",
+  "llm_context": "You should see a new database interface with options to add columns and customize your database layout, bringing you closer to creating your database."
 }

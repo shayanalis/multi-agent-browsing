@@ -23,6 +23,8 @@ class StateCapture:
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.step_index = 0
         self.previous_url: Optional[str] = None
+        self.previous_action: Optional[ActionFromPrevious] = None
+        self.consecutive_same_actions = 0
 
     def should_capture(
         self,
@@ -59,8 +61,25 @@ class StateCapture:
         if self._has_modal_or_dialog(state):
             return True
 
+        # Skip if this is the same action as the previous one (redundant clicks)
+        if action and self.previous_action:
+            if (action.type == self.previous_action.type and 
+                action.description == self.previous_action.description and
+                state.url == self.previous_url):
+                self.consecutive_same_actions += 1
+                # Skip if we've done the same action 2+ times in a row
+                if self.consecutive_same_actions >= 2:
+                    return False
+            else:
+                self.consecutive_same_actions = 0
+        
         # Capture after significant actions (clicks, form inputs)
         if action and action.type in [ActionType.CLICK, ActionType.TYPE]:
+            # Skip generic/unhelpful actions
+            if action.description and action.description.lower() in [
+                "execute action", "interact with the page", "click on element"
+            ]:
+                return False
             return True
 
         # Capture after navigation
@@ -129,6 +148,7 @@ class StateCapture:
 
         # Update for next step
         self.previous_url = state.url
+        self.previous_action = action
         self.step_index += 1
 
         return step

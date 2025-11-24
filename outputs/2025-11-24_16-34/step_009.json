@@ -1,0 +1,15 @@
+{
+  "step_index": 9,
+  "screenshot_path": "step_009.png",
+  "url": "https://www.notion.so/shayan-ali/2b58b46e0fb28091b4bddb8f35dd52c1?v=2b58b46e0fb280e7abf2000cf6969ec5",
+  "has_unique_url": false,
+  "action_from_previous": {
+    "type": "click",
+    "description": "Click on 'Add property'",
+    "element_index": null
+  },
+  "state_description": "After click: Click on 'Add property'",
+  "timestamp": "2025-11-24T16:35:52.608564",
+  "llm_enhanced_instruction": "Click on the 'Add property' button located at the top of the database interface to include a new property in your database, which will allow you to customize the data structure for your tasks.",
+  "llm_context": "You should see a new property field appear, allowing you to define the type and name of the property, bringing you closer to fully setting up your database."
+}

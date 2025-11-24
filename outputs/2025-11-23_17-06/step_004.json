@@ -10,6 +10,6 @@
   },
   "state_description": "After click: Click on 'Empty database'",
   "timestamp": "2025-11-23T17:06:59.706919",
-  "llm_enhanced_instruction": null,
-  "llm_context": null
+  "llm_enhanced_instruction": "Now that you've selected 'Database', click on 'Empty database' to create a blank database that you can customize.",
+  "llm_context": "You should see a new blank database page with column headers ready for you to add your data, bringing you one step closer to creating your database."
 }

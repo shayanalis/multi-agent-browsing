@@ -10,6 +10,6 @@
   },
   "state_description": "After type: Type 'Sample Item'",
   "timestamp": "2025-11-23T17:07:15.824564",
-  "llm_enhanced_instruction": null,
-  "llm_context": null
+  "llm_enhanced_instruction": "In the text field labeled 'Name', type 'Sample Item' to create a new entry in your database.",
+  "llm_context": "You should see 'Sample Item' appear in the database, indicating that you've successfully added a new item to your database."
 }
