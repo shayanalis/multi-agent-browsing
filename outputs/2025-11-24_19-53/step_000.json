@@ -1,0 +1,15 @@
+{
+  "step_index": 0,
+  "screenshot_path": "step_000.png",
+  "url": "https://app.asana.com/1/1212082827950633/home",
+  "has_unique_url": true,
+  "action_from_previous": {
+    "type": "navigate",
+    "description": "\ud83d\udd17 Navigated to https://app.asana.com",
+    "element_index": null
+  },
+  "state_description": "Initial state after navigation: How can i create a workflow in asana",
+  "timestamp": "2025-11-24T19:54:02.800533",
+  "llm_enhanced_instruction": null,
+  "llm_context": null
+}
