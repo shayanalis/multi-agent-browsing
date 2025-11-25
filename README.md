@@ -98,15 +98,3 @@ python -m agent_a.agent_a --task "how can I find my socks page in Notion?"
 ## Architecture
 
 ![Architecture Diagram](architecture_diagram.png)
-
-For detailed architecture diagrams, see [ARCHITECTURE.md](ARCHITECTURE.md).
-
-- **Agent A** (`agent_a/agent_a.py`): CLI interface that spawns Agent B
-- **Agent B** (`agent_b/`): Executes tasks and captures UI states
-  - `browser_agent.py`: Wraps browser-use Agent, handles browser automation
-  - `state_capture.py`: Decides when to capture states, builds Step objects
-  - `task_runner.py`: Orchestrates the execution loop
-  - `output_manager.py`: Manages output files and generates tutorials
-  - `tutorial_agent.py`: Generates complete markdown tutorials using LLM
-
-
