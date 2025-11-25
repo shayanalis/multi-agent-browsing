@@ -93,33 +93,11 @@ python -m agent_a.agent_a --task "How can I create a new page in Notion?"
 # Find a specific page
 python -m agent_a.agent_a --task "how can I find my socks page in Notion?"
 
-# Create a project in Linear
-python -m agent_a.agent_a --task "How do I create a project in Linear?" --browser chrome
-```
 
-## Output
-
-After execution, Agent B generates:
-
-1. **Screenshots**: PNG files for each captured UI state (`step_XXX.png`)
-2. **Step metadata**: JSON files with step information (`step_XXX.json`)
-3. **Task metadata**: Overall task information (`task_metadata.json`)
-4. **Tutorial**: Markdown tutorial with instructions and screenshots (`tutorial.md`)
-
-All outputs are saved in `outputs/YYYY-MM-DD_HH-MM/` directories.
-
-## How It Works
-
-1. **Agent A** receives a task instruction via CLI
-2. **Agent A** spawns **Agent B** with the task
-3. **Agent B**:
-   - Converts the task into concise instructions
-   - Initializes a browser session
-   - Executes steps while capturing UI states
-   - Enhances steps with LLM-generated instructions
-   - Generates a tutorial with screenshots
 
 ## Architecture
+
+![Architecture Diagram](architecture_diagram.png)
 
 For detailed architecture diagrams, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
@@ -131,24 +109,4 @@ For detailed architecture diagrams, see [ARCHITECTURE.md](ARCHITECTURE.md).
   - `output_manager.py`: Manages output files and generates tutorials
   - `tutorial_agent.py`: Generates complete markdown tutorials using LLM
 
-## Notes
-
-- The system automatically captures UI states including modals, forms, and other non-URL states
-- Screenshots are captured after significant actions (clicks, form inputs, navigation)
-- The LLM enhancement step generates clear, tutorial-friendly instructions
-- Browser profiles are created in temporary directories to avoid conflicts
-
-## Troubleshooting
-
-**Module not found errors:**
-- Ensure you're in the project root directory
-- Activate the conda environment: `conda activate agentic-browsing`
-
-**API key errors:**
-- Check that your `.env` file exists in the project root
-- Verify that `OPENAI_API_KEY` and `BROWSER_USE_API_KEY` are set
-
-**Browser not found:**
-- Ensure the specified browser is installed
-- Check that the browser executable path is correct (macOS paths are hardcoded)
 
