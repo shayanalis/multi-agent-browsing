@@ -93,7 +93,7 @@ python -m agent_a.agent_a --task "How can I create a new page in Notion?"
 # Find a specific page
 python -m agent_a.agent_a --task "how can I find my socks page in Notion?"
 
-
+```
 
 ## Architecture
 
