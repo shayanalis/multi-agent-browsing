@@ -2,10 +2,12 @@
 
 import json
 from pathlib import Path
-from typing import List
+from typing import TYPE_CHECKING, List
 
 from .state_capture import Step
-from .task_runner import TaskRun
+
+if TYPE_CHECKING:
+    from .task_runner import TaskRun
 
 
 class OutputManager:
@@ -34,7 +36,7 @@ class OutputManager:
         task_dir.mkdir(parents=True, exist_ok=True)
         return task_dir
 
-    def save_task_metadata(self, task_dir: Path, task_run: TaskRun) -> Path:
+    def save_task_metadata(self, task_dir: Path, task_run: "TaskRun") -> Path:
         """Save task metadata JSON.
 
         Args:
@@ -68,7 +70,7 @@ class OutputManager:
     def generate_tutorial(
         self, 
         task_dir: Path, 
-        task_run: TaskRun, 
+        task_run: "TaskRun", 
         steps: List[Step],
         tutorial_agent=None,
         task_instruction: str = None

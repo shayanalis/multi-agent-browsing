@@ -121,6 +121,8 @@ All outputs are saved in `outputs/YYYY-MM-DD_HH-MM/` directories.
 
 ## Architecture
 
+For detailed architecture diagrams, see [ARCHITECTURE.md](ARCHITECTURE.md).
+
 - **Agent A** (`agent_a/agent_a.py`): CLI interface that spawns Agent B
 - **Agent B** (`agent_b/`): Executes tasks and captures UI states
   - `browser_agent.py`: Wraps browser-use Agent, handles browser automation
