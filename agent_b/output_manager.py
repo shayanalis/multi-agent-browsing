@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 from typing import List
 
-from .models import TaskRun
 from .state_capture import Step
+from .task_runner import TaskRun
 
 
 class OutputManager:
