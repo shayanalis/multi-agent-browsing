@@ -15,7 +15,7 @@ from .state_capture import Step
 class TutorialAgent:
     """Generates complete markdown tutorials from captured steps using LLM."""
 
-    def __init__(self, model: str = "gpt-5-mini", timeout: int = 60):
+    def __init__(self, model: str = "gpt-5", timeout: int = 60):
         """Initialize the tutorial agent.
 
         Args:

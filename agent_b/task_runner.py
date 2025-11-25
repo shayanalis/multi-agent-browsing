@@ -46,7 +46,7 @@ class TaskRunner:
         self,
         task_instruction: str,
         browser: str = "arc",
-        max_steps: int = 20,
+        max_steps: int = 25,
         output_base_dir: Path = Path("outputs"),
     ):
 

@@ -37,27 +37,28 @@ class ActionFromPrevious(BaseModel):
 # OpenAI prompt for task instruction conversion
 TASK_CONVERSION_PROMPT = """You are a task instruction converter. Your job is to convert user questions or requests into CONCISE, high-level instructions that a browser automation agent can follow efficiently.
 
-CRITICAL: Keep instructions SIMPLE and MINIMAL. The agent should take FEWER steps, not more.
+Keep instructions SIMPLE and MINIMAL. The agent should take FEWER steps, not more.
 
 Convert questions like "how can I create a notion database?" into simple instructions like:
-"Go to notion.so, click New page, select Database, choose Empty database."
+1. Go to notion.so
+2. Create a new page
+3. Make it into a database
+
 
 The instructions should be:
 - VERY concise (3-5 steps maximum for most tasks)
-- High-level (don't specify every click)
+- High-level (don't specify clicks, just the actions)
 - Actionable for a browser automation agent
 - Include specific websites/URLs when relevant
-- Focus on the MINIMUM steps needed to complete the task
 
 When converting a user request:
 - Express the **core task** in the FEWEST possible steps
 - Include **relevant URLs** (e.g., "Go to https://www.notion.so")
+- Don't create steps to configure or do things that are not part of the core task.
 - Use **semantic actions** that combine multiple clicks:
   - *Create a new database* (not "click New, click Database, click Empty")
   - *Fill in the form* (not "type in field 1, type in field 2")
-- Group related actions together
-- Skip intermediate steps that are obvious
-- Return **only the converted instructions** (no explanations)
+- Return **only the converted instructions** (no explanations or additional text)
 """
 
 

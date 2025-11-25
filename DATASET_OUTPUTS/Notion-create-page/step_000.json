@@ -1,0 +1,15 @@
+{
+  "step_index": 0,
+  "screenshot_path": "step_000.png",
+  "url": "https://www.notion.so/shayan-ali/Courses-ac9a2851027644438d895f3001b5fb45",
+  "has_unique_url": true,
+  "action_from_previous": {
+    "type": "navigate",
+    "description": "\ud83d\udd17 Navigated to https://www.notion.so",
+    "element_index": null
+  },
+  "state_description": "Initial state after navigation: How can I create a new page in Notion?",
+  "timestamp": "2025-11-24T20:42:51.704700",
+  "llm_enhanced_instruction": null,
+  "llm_context": null
+}
